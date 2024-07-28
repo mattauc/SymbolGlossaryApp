@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+// Each document will contain the drawn content
+
+struct Document {
+    var name: String?
+    
+    struct APIResponse {
+        
+    }
+}
+

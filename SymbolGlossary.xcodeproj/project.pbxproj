@@ -8,21 +8,53 @@
 
 /* Begin PBXBuildFile section */
 		67AFEB162C55157A003BBF06 /* SymbolGlossaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB152C55157A003BBF06 /* SymbolGlossaryApp.swift */; };
-		67AFEB182C55157A003BBF06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB172C55157A003BBF06 /* ContentView.swift */; };
+		67AFEB182C55157A003BBF06 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB172C55157A003BBF06 /* HomePage.swift */; };
 		67AFEB1A2C55157B003BBF06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AFEB192C55157B003BBF06 /* Assets.xcassets */; };
 		67AFEB1D2C55157B003BBF06 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AFEB1C2C55157B003BBF06 /* Preview Assets.xcassets */; };
+		67AFEB372C55B507003BBF06 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB362C55B507003BBF06 /* Document.swift */; };
+		67AFEB392C55B515003BBF06 /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB382C55B515003BBF06 /* DocumentStore.swift */; };
+		67AFEB3B2C55B73D003BBF06 /* SymbolGlossary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB3A2C55B73D003BBF06 /* SymbolGlossary.swift */; };
+		67AFEB3D2C55B7E1003BBF06 /* DocumentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB3C2C55B7E1003BBF06 /* DocumentPage.swift */; };
+		67AFEB3F2C55B807003BBF06 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB3E2C55B807003BBF06 /* NetworkManager.swift */; };
+		67AFEB412C55B873003BBF06 /* SymbolGlossaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB402C55B873003BBF06 /* SymbolGlossaryManager.swift */; };
+		67AFEB442C56321F003BBF06 /* DrawingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB432C56321F003BBF06 /* DrawingEngine.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		67AFEB2D2C5515B6003BBF06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67AFEB0A2C55157A003BBF06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67AFEB112C55157A003BBF06;
+			remoteInfo = SymbolGlossary;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		67AFEB122C55157A003BBF06 /* SymbolGlossary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolGlossary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67AFEB152C55157A003BBF06 /* SymbolGlossaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGlossaryApp.swift; sourceTree = "<group>"; };
-		67AFEB172C55157A003BBF06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		67AFEB172C55157A003BBF06 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		67AFEB192C55157B003BBF06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67AFEB1C2C55157B003BBF06 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		67AFEB272C5515B6003BBF06 /* NetworkLayer.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkLayer.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67AFEB362C55B507003BBF06 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		67AFEB382C55B515003BBF06 /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
+		67AFEB3A2C55B73D003BBF06 /* SymbolGlossary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGlossary.swift; sourceTree = "<group>"; };
+		67AFEB3C2C55B7E1003BBF06 /* DocumentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPage.swift; sourceTree = "<group>"; };
+		67AFEB3E2C55B807003BBF06 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		67AFEB402C55B873003BBF06 /* SymbolGlossaryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGlossaryManager.swift; sourceTree = "<group>"; };
+		67AFEB432C56321F003BBF06 /* DrawingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		67AFEB0F2C55157A003BBF06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AFEB242C5515B6003BBF06 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				67AFEB122C55157A003BBF06 /* SymbolGlossary.app */,
+				67AFEB272C5515B6003BBF06 /* NetworkLayer.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,8 +84,12 @@
 		67AFEB142C55157A003BBF06 /* SymbolGlossary */ = {
 			isa = PBXGroup;
 			children = (
+				67AFEB422C563202003BBF06 /* Common */,
+				67AFEB352C5516BD003BBF06 /* ViewModels */,
+				67AFEB342C5516B2003BBF06 /* Models */,
+				67AFEB332C5516A2003BBF06 /* Views */,
+				67AFEB322C5515E6003BBF06 /* NetworkLayer */,
 				67AFEB152C55157A003BBF06 /* SymbolGlossaryApp.swift */,
-				67AFEB172C55157A003BBF06 /* ContentView.swift */,
 				67AFEB192C55157B003BBF06 /* Assets.xcassets */,
 				67AFEB1B2C55157B003BBF06 /* Preview Content */,
 			);
@@ -65,6 +102,49 @@
 				67AFEB1C2C55157B003BBF06 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		67AFEB322C5515E6003BBF06 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				67AFEB3E2C55B807003BBF06 /* NetworkManager.swift */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		67AFEB332C5516A2003BBF06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				67AFEB172C55157A003BBF06 /* HomePage.swift */,
+				67AFEB3C2C55B7E1003BBF06 /* DocumentPage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		67AFEB342C5516B2003BBF06 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				67AFEB362C55B507003BBF06 /* Document.swift */,
+				67AFEB3A2C55B73D003BBF06 /* SymbolGlossary.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		67AFEB352C5516BD003BBF06 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				67AFEB382C55B515003BBF06 /* DocumentStore.swift */,
+				67AFEB402C55B873003BBF06 /* SymbolGlossaryManager.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		67AFEB422C563202003BBF06 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				67AFEB432C56321F003BBF06 /* DrawingEngine.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +167,24 @@
 			productReference = 67AFEB122C55157A003BBF06 /* SymbolGlossary.app */;
 			productType = "com.apple.product-type.application";
 		};
+		67AFEB262C5515B6003BBF06 /* NetworkLayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67AFEB2F2C5515B6003BBF06 /* Build configuration list for PBXNativeTarget "NetworkLayer" */;
+			buildPhases = (
+				67AFEB232C5515B6003BBF06 /* Sources */,
+				67AFEB242C5515B6003BBF06 /* Frameworks */,
+				67AFEB252C5515B6003BBF06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67AFEB2E2C5515B6003BBF06 /* PBXTargetDependency */,
+			);
+			name = NetworkLayer;
+			productName = NetworkLayer;
+			productReference = 67AFEB272C5515B6003BBF06 /* NetworkLayer.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,6 +197,10 @@
 				TargetAttributes = {
 					67AFEB112C55157A003BBF06 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					67AFEB262C5515B6003BBF06 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 67AFEB112C55157A003BBF06;
 					};
 				};
 			};
@@ -116,6 +218,7 @@
 			projectRoot = "";
 			targets = (
 				67AFEB112C55157A003BBF06 /* SymbolGlossary */,
+				67AFEB262C5515B6003BBF06 /* NetworkLayer */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +233,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		67AFEB252C5515B6003BBF06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -137,12 +247,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AFEB182C55157A003BBF06 /* ContentView.swift in Sources */,
+				67AFEB182C55157A003BBF06 /* HomePage.swift in Sources */,
+				67AFEB3D2C55B7E1003BBF06 /* DocumentPage.swift in Sources */,
 				67AFEB162C55157A003BBF06 /* SymbolGlossaryApp.swift in Sources */,
+				67AFEB412C55B873003BBF06 /* SymbolGlossaryManager.swift in Sources */,
+				67AFEB3F2C55B807003BBF06 /* NetworkManager.swift in Sources */,
+				67AFEB392C55B515003BBF06 /* DocumentStore.swift in Sources */,
+				67AFEB372C55B507003BBF06 /* Document.swift in Sources */,
+				67AFEB3B2C55B73D003BBF06 /* SymbolGlossary.swift in Sources */,
+				67AFEB442C56321F003BBF06 /* DrawingEngine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67AFEB232C5515B6003BBF06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		67AFEB2E2C5515B6003BBF06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67AFEB112C55157A003BBF06 /* SymbolGlossary */;
+			targetProxy = 67AFEB2D2C5515B6003BBF06 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		67AFEB1E2C55157B003BBF06 /* Debug */ = {
@@ -322,6 +454,40 @@
 			};
 			name = Release;
 		};
+		67AFEB302C5515B6003BBF06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5223SVKWJP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.mauc.NetworkLayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SymbolGlossary;
+			};
+			name = Debug;
+		};
+		67AFEB312C5515B6003BBF06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5223SVKWJP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.mauc.NetworkLayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SymbolGlossary;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -339,6 +505,15 @@
 			buildConfigurations = (
 				67AFEB212C55157B003BBF06 /* Debug */,
 				67AFEB222C55157B003BBF06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67AFEB2F2C5515B6003BBF06 /* Build configuration list for PBXNativeTarget "NetworkLayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67AFEB302C5515B6003BBF06 /* Debug */,
+				67AFEB312C5515B6003BBF06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

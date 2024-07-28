@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct SymbolGlossaryApp: App {
+    @StateObject private var documentStore = DocumentStore()
+    @StateObject private var symbolGlossaryManager = SymbolGlossaryManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DocumentPage()
+                .environmentObject(documentStore)
+                .environmentObject(symbolGlossaryManager)
         }
     }
 }
