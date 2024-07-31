@@ -14,7 +14,7 @@ struct SymbolGlossaryApp: App {
     
     var body: some Scene {
         WindowGroup {
-            DocumentPage()
+            HomePage()
                 .environmentObject(documentStore)
                 .environmentObject(symbolGlossaryManager)
         }

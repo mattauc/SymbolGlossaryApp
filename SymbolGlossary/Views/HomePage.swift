@@ -13,13 +13,29 @@ struct HomePage: View {
     @EnvironmentObject var symbolGlossaryManager: SymbolGlossaryManager
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                homeContent
+                    ScrollView() {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                            DrawingCard()
+
+         
+                            //DrawingCard()
+        //                    ForEach(documentStore.documents.indices, id: \.self) { index in
+        //                    }
+                        }
+                        .padding()
+                    }
+            }
+            .padding()
+            .background(Color("Background"))
         }
-        .padding()
+    }
+    
+    var homeContent: some View {
+        Text("MATH SYMBOL GLOSSARY")
+            .foregroundColor(.white)
     }
 }
 

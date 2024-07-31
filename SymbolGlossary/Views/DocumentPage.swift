@@ -16,22 +16,40 @@ struct DocumentPage: View {
     let engine = DrawingEngine()
     
     var body: some View {
-        
+        ZStack {
+            Color("Background")
+                .edgesIgnoringSafeArea(.all)
+            ScrollView {
+                VStack {
+                    Text("SYMBOL NAME")
+                        .foregroundColor(.white)
+                    canvasPage
+                    toolBar
+                        .padding(.top, 5)
+                }
+                symbolInformation
+            }
+        }
+    }
+    
+    private var symbolInformation: some View {
         VStack {
-            canvasPage
-            toolBar
+            HStack {
+                Text("SYMBOL INFORMATION")
+                    .foregroundColor(.white)
+                Spacer()
+            }
+            .padding()
+            
         }
     }
     
     private var canvasPage: some View {
         Canvas { context, size in
             for line in lines {
-                //var path = Path()
-                //path.addLines(line.points)
                 
                 let path = engine.createPath(for: line.points)
                 
-                //context.stroke(path, with: .color(line.colour), lineWidth: line.lineWidth)
                 context.stroke(path, with: .color(line.colour), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round, lineJoin: .round))
             }
         }
@@ -53,6 +71,13 @@ struct DocumentPage: View {
                 }
             }
         )
+        .frame(width: 300, height: 400)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color("DarkGrayColour"), lineWidth: 10)
+        )
     }
     
     private var toolBar: some View {
@@ -62,7 +87,7 @@ struct DocumentPage: View {
                 deletedLines.append(last)
             } label: {
                 Image(systemName: "arrow.uturn.backward")
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
             }
             .disabled(lines.count == 0)
             
@@ -71,7 +96,7 @@ struct DocumentPage: View {
                 lines.append(last)
             } label: {
                 Image(systemName: "arrow.uturn.forward")
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
             }
             .disabled(deletedLines.count == 0)
             
@@ -80,7 +105,7 @@ struct DocumentPage: View {
                 deletedLines = [Line]()
             } label: {
                 Image(systemName: "trash")
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
             }
         }
     }

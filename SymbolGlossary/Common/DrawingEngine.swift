@@ -19,7 +19,7 @@ class DrawingEngine {
         
         for index in 1..<points.count {
             let mid = calculateMidPoint(points[index - 1], points[index])
-            path.addQuadCurve(to: mid, control: points[index])
+            path.addQuadCurve(to: mid, control: points[index - 1])
         }
         
         if let last = points.last {
