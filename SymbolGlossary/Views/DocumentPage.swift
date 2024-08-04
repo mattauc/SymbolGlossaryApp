@@ -9,25 +9,46 @@ import SwiftUI
 
 struct DocumentPage: View {
     
-    @State private var lines = [Line]()
-    @State private var deletedLines = [Line]()
     @State private var eraser = false
+    @State private var documentCreated = false
     
+    @EnvironmentObject var documentStore: DocumentStore
+    
+    let documentIndex: Int
     let engine = DrawingEngine()
+    var newDocument: Bool
     
     var body: some View {
         ZStack {
             Color("Background")
                 .edgesIgnoringSafeArea(.all)
-            ScrollView {
-                VStack {
-                    Text("SYMBOL NAME")
-                        .foregroundColor(.white)
-                    canvasPage
-                    toolBar
-                        .padding(.top, 5)
+            if documentCreated {
+                ScrollView {
+                    VStack {
+                        
+                        Text("SYMBOL NAME")
+                            .foregroundColor(.white)
+                        canvasPage
+                        toolBar
+                            .padding(.top, 5)
+                    }
+                    symbolInformation
                 }
-                symbolInformation
+            }
+        }
+        .onAppear() {
+            if newDocument {
+                documentStore.createNewDocument(documentIndex)
+            } else {
+                documentStore.cursorIndex = documentIndex
+            }
+            documentCreated = true
+        }
+        .onDisappear() {
+            if newDocument {
+                if documentStore.documentLines.count == 0 {
+                    documentStore.deleteDocument(at: documentStore.documents.count - 1)
+                }
             }
         }
     }
@@ -46,11 +67,11 @@ struct DocumentPage: View {
     
     private var canvasPage: some View {
         Canvas { context, size in
-            for line in lines {
+            for line in documentStore.documentLines {
                 
                 let path = engine.createPath(for: line.points)
                 
-                context.stroke(path, with: .color(line.colour), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round, lineJoin: .round))
+                context.stroke(path, with: .color(Color(rgba: line.colour)), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round, lineJoin: .round))
             }
         }
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
@@ -58,16 +79,15 @@ struct DocumentPage: View {
                 let newPoint = value.location
                 
                 if value.translation.width + value.translation.height == 0 {
-                    lines.append(Line(points: [newPoint], colour: .black, lineWidth: 5))
+                    documentStore.addLine(Line(points: [newPoint], colour: RGBA(colour: .black), lineWidth: 5))
                     
                 } else {
-                    let index = lines.count - 1
-                    lines[index].points.append(newPoint)
+                    documentStore.updateLine(newPoint)
                 }
             }
             .onEnded() { value in
-                if let last = lines.last?.points, last.isEmpty {
-                    lines.removeLast()
+                if let last = documentStore.documentLines.last?.points, last.isEmpty {
+                    documentStore.removeLastLine()
                 }
             }
         )
@@ -83,26 +103,23 @@ struct DocumentPage: View {
     private var toolBar: some View {
         HStack {
             Button {
-                let last = lines.removeLast()
-                deletedLines.append(last)
+                documentStore.undoLine()
             } label: {
                 Image(systemName: "arrow.uturn.backward")
                     .foregroundColor(.white)
             }
-            .disabled(lines.count == 0)
+            .disabled(documentStore.documentLines.count == 0)
             
             Button {
-                let last = deletedLines.removeLast()
-                lines.append(last)
+                documentStore.redoLine()
             } label: {
                 Image(systemName: "arrow.uturn.forward")
                     .foregroundColor(.white)
             }
-            .disabled(deletedLines.count == 0)
+            .disabled(documentStore.deletedLines.count == 0)
             
             Button {
-                lines = [Line]()
-                deletedLines = [Line]()
+                documentStore.trashLines()
             } label: {
                 Image(systemName: "trash")
                     .foregroundColor(.white)
@@ -110,13 +127,14 @@ struct DocumentPage: View {
         }
     }
     
-    struct Line {
-        var points: [CGPoint]
-        var colour: Color
-        var lineWidth: CGFloat
+    private func captureAndSaveImage() {
+        let renderer = ImageRenderer(content: canvasPage)
+        if let image = renderer.uiImage {
+            
+        }
     }
 }
 
-#Preview {
-    DocumentPage()
-}
+//#Preview {
+//    DocumentPage()
+//}

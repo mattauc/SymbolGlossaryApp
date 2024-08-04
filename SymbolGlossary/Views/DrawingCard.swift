@@ -9,10 +9,12 @@ import SwiftUI
 
 struct DrawingCard: View {
     
-    private var isEmpty = true
+    var isEmpty: Bool
+    var documentIndex: Int
     //private var documentDisplay:
-    private var cornerRadius = 10.0
-    //private var documentIndex: I
+    var cornerRadius = 10.0
+    
+    @EnvironmentObject var documentStore: DocumentStore
     
     //Likely import the document model that belong to each card and just dispaly the UIimage
     
@@ -23,7 +25,7 @@ struct DrawingCard: View {
                 .foregroundColor(Color("DarkGrayColour"))
             
             if isEmpty {
-                NavigationLink(destination: DocumentPage()) {
+                NavigationLink(destination: DocumentPage(documentIndex: documentIndex, newDocument: true)) {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -31,13 +33,19 @@ struct DrawingCard: View {
                         .padding(50)
                 }
             } else {
-                EmptyView()
+                NavigationLink(destination: DocumentPage(documentIndex: documentIndex, newDocument: false)) {
+                    Image(systemName: "pencil.circle")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.gray)
+                        .padding(50)
+                }
             }
         }
         .frame(width: 150, height: 150)
     }
 }
-
-#Preview {
-    DrawingCard()
-}
+//
+//#Preview {
+//    DrawingCard(isEmpty: false)
+//}

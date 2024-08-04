@@ -17,13 +17,14 @@ struct HomePage: View {
             VStack {
                 homeContent
                     ScrollView() {
+                        
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                            DrawingCard()
-
-         
-                            //DrawingCard()
-        //                    ForEach(documentStore.documents.indices, id: \.self) { index in
-        //                    }
+                            DrawingCard(isEmpty: true, documentIndex: documentStore.documents.count)
+                            ForEach(documentStore.documents.indices.reversed(), id: \.self) { index in
+                                withAnimation {
+                                    DrawingCard(isEmpty: false, documentIndex: index)
+                                }
+                            }
                         }
                         .padding()
                     }

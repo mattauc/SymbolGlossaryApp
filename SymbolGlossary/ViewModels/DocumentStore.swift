@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 // This will handle the different documents
 
 class DocumentStore: ObservableObject {
     @Published var documents: [Document] = []
+    @Published private var _cursorIndex = 0
     
     private let fileURL: URL
     
@@ -22,8 +24,27 @@ class DocumentStore: ObservableObject {
         loadDocuments()
     }
     
-    func addDocument(_ document: Document) {
+    var cursorIndex: Int {
+        get { boundsCheckedDocumentIndex(_cursorIndex)}
+        set {_cursorIndex = boundsCheckedDocumentIndex(newValue)}
+    }
+    
+    private func boundsCheckedDocumentIndex(_ index: Int) -> Int {
+        var index = index % documents.count
+        if index < 0 {
+            index += documents.count
+        }
+        return index
+    }
+    
+    func addDocument(_ document: Document, _ index: Int) {
+        var cursorMod = index
+        if documents.count >= 9 {
+            documents.removeFirst()
+            cursorMod -= 1
+        }
         documents.append(document)
+        cursorIndex = cursorMod
         saveDocuments()
     }
         
@@ -48,5 +69,66 @@ class DocumentStore: ObservableObject {
         } catch {
             print("Failed to load documents: \(error.localizedDescription)")
         }
+    }
+    
+    var image: UIImage? {
+        get {
+            if let data = documents[cursorIndex].imageData {
+                //return UIImage(data: data)
+//                return data.pngData()
+            }
+            return nil
+        }
+//        set {
+//            if let newImage = newValue {
+//                documents[cursorIndex].imageData = newImage.pngData()
+//            } else {
+//                documents[cursorIndex].imageData = nil
+//            }
+//        }
+    }
+    
+    func accessDocumentAtIndex(_ index: Int) -> Document {
+        let cursorIndex = index
+        return documents[cursorIndex]
+    }
+    
+    func createNewDocument(_ index: Int) {
+        let newDocument = Document()
+        addDocument(newDocument, index)
+        
+        print(documents.count)
+    }
+    
+    var documentLines: [Line] {
+        documents[cursorIndex].lines
+    }
+    
+    var deletedLines: [Line] {
+        documents[cursorIndex].deletedLines
+    }
+    
+    func updateLine(_ newPoint: CGPoint) {
+        documents[cursorIndex].updateLine(newPoint)
+    }
+    
+    func removeLastLine() {
+        documents[cursorIndex].removeLastLine()
+    }
+    
+    func addLine(_ line: Line) {
+        documents[cursorIndex].addLine(line)
+    }
+    
+    func undoLine() {
+        documents[cursorIndex].undoLine()
+    }
+    
+    func redoLine() {
+        documents[cursorIndex].redoLine()
+    }
+    
+    func trashLines() {
+        documents[cursorIndex].trashLines()
     }
 }
