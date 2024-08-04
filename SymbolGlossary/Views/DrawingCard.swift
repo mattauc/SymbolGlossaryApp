@@ -34,11 +34,19 @@ struct DrawingCard: View {
                 }
             } else {
                 NavigationLink(destination: DocumentPage(documentIndex: documentIndex, newDocument: false)) {
-                    Image(systemName: "pencil.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(.gray)
-                        .padding(50)
+//                    Image(systemName: "pencil.circle")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .foregroundColor(.gray)
+//                        .padding(50)
+                    if let imageData = documentStore.documents[documentIndex].imageData,
+                       let image = UIImage(data: imageData) {
+                        Image(uiImage: image)
+                            .resizable()
+                    } else {
+                        Text("No Image")
+                            .foregroundColor(.white)
+                    }
                 }
             }
         }

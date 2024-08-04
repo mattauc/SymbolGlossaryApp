@@ -20,7 +20,6 @@
 		67AFEB442C56321F003BBF06 /* DrawingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB432C56321F003BBF06 /* DrawingEngine.swift */; };
 		67AFEB462C59E308003BBF06 /* DrawingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB452C59E308003BBF06 /* DrawingCard.swift */; };
 		67AFEB4C2C5EF13F003BBF06 /* RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB4B2C5EF13F003BBF06 /* RGBA.swift */; };
-		67AFEB4E2C5F1EFB003BBF06 /* ViewToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB4D2C5F1EFB003BBF06 /* ViewToImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +37,6 @@
 		67AFEB432C56321F003BBF06 /* DrawingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingEngine.swift; sourceTree = "<group>"; };
 		67AFEB452C59E308003BBF06 /* DrawingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCard.swift; sourceTree = "<group>"; };
 		67AFEB4B2C5EF13F003BBF06 /* RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBA.swift; sourceTree = "<group>"; };
-		67AFEB4D2C5F1EFB003BBF06 /* ViewToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewToImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +130,6 @@
 			children = (
 				67AFEB432C56321F003BBF06 /* DrawingEngine.swift */,
 				67AFEB4B2C5EF13F003BBF06 /* RGBA.swift */,
-				67AFEB4D2C5F1EFB003BBF06 /* ViewToImage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -216,7 +213,6 @@
 				67AFEB3F2C55B807003BBF06 /* NetworkManager.swift in Sources */,
 				67AFEB392C55B515003BBF06 /* DocumentStore.swift in Sources */,
 				67AFEB372C55B507003BBF06 /* Document.swift in Sources */,
-				67AFEB4E2C5F1EFB003BBF06 /* ViewToImage.swift in Sources */,
 				67AFEB3B2C55B73D003BBF06 /* SymbolGlossary.swift in Sources */,
 				67AFEB442C56321F003BBF06 /* DrawingEngine.swift in Sources */,
 			);

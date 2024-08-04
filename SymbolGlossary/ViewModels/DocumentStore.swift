@@ -37,23 +37,24 @@ class DocumentStore: ObservableObject {
         return index
     }
     
-    func addDocument(_ document: Document, _ index: Int) {
-        var cursorMod = index
-        if documents.count >= 9 {
-            documents.removeFirst()
-            cursorMod -= 1
-        }
-        documents.append(document)
-        cursorIndex = cursorMod
-        saveDocuments()
-    }
+//    func addDocument(_ document: Document, _ index: Int) {
+//        var cursorMod = index
+//        if documents.count >= 9 {
+//            documents.removeFirst()
+//            cursorMod -= 1
+//        }
+//        documents.append(document)
+//        cursorIndex = cursorMod
+//        saveDocuments()
+//    }
         
     func deleteDocument(at index: Int) {
         documents.remove(at: index)
         saveDocuments()
     }
     
-    private func saveDocuments() {
+    func saveDocuments() {
+        print("SAVING")
         do {
             let data = try JSONEncoder().encode(documents)
             try data.write(to: fileURL)
@@ -71,14 +72,14 @@ class DocumentStore: ObservableObject {
         }
     }
     
-    var image: UIImage? {
-        get {
-            if let data = documents[cursorIndex].imageData {
-                //return UIImage(data: data)
+//    var image: UIImage? {
+//        get {
+//            if let data = documents[cursorIndex].imageData {
+//                return UIImage(data: data)
 //                return data.pngData()
-            }
-            return nil
-        }
+//            }
+//            return nil
+//        }
 //        set {
 //            if let newImage = newValue {
 //                documents[cursorIndex].imageData = newImage.pngData()
@@ -86,6 +87,10 @@ class DocumentStore: ObservableObject {
 //                documents[cursorIndex].imageData = nil
 //            }
 //        }
+//    }
+    
+    func saveImage(withImageData imageData: Data) {
+        documents[cursorIndex].imageData = imageData
     }
     
     func accessDocumentAtIndex(_ index: Int) -> Document {
@@ -93,10 +98,16 @@ class DocumentStore: ObservableObject {
         return documents[cursorIndex]
     }
     
+    // FRESH DOCUMENT NOT SAVING 
     func createNewDocument(_ index: Int) {
         let newDocument = Document()
-        addDocument(newDocument, index)
-        
+        var cursorMod = index
+        if documents.count >= 9 {
+            documents.removeFirst()
+            cursorMod -= 1
+        }
+        documents.append(newDocument)
+        cursorIndex = cursorMod
         print(documents.count)
     }
     

@@ -50,6 +50,8 @@ struct DocumentPage: View {
                     documentStore.deleteDocument(at: documentStore.documents.count - 1)
                 }
             }
+            documentStore.saveDocuments()
+            captureAndSaveImage()
         }
     }
     
@@ -128,9 +130,20 @@ struct DocumentPage: View {
     }
     
     private func captureAndSaveImage() {
-        let renderer = ImageRenderer(content: canvasPage)
-        if let image = renderer.uiImage {
-            
+        let size = CGSize(width: 300, height: 400) // Adjust to your needs
+        let hostingController = UIHostingController(rootView: canvasPage.frame(width: size.width, height: size.height))
+        
+        let uiView = hostingController.view
+        uiView?.bounds = CGRect(origin: .zero, size: size)
+        uiView?.backgroundColor = .white
+
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        uiView?.drawHierarchy(in: uiView!.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        if let image = image, let imageData = image.pngData() { // Convert UIImage to Data
+            documentStore.saveImage(withImageData: imageData)
         }
     }
 }
