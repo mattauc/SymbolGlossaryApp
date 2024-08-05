@@ -15,6 +15,7 @@ struct Document: Codable {
     //    var title: String
     //    var content: String
     var imageData: Data?
+    var symbol: APIResponse?
     
     var lines = [Line]()
     var deletedLines = [Line]()
@@ -48,12 +49,10 @@ struct Document: Codable {
 
     }
     
-
-
-    
-    struct APIResponse {
-        
+    struct APIResponse: Codable {
+        var symbol: String
     }
+
 }
 
 struct Line: Codable {
@@ -61,4 +60,5 @@ struct Line: Codable {
     var colour: RGBA
     var lineWidth: CGFloat
 }
+
 

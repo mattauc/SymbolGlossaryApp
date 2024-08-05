@@ -7,16 +7,20 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 // This will handle the different documents
 
 class DocumentStore: ObservableObject {
     @Published var documents: [Document] = []
     @Published private var _cursorIndex = 0
+    private let symbolService: SymbolService
+    private var cancellables = Set<AnyCancellable>()
     
     private let fileURL: URL
     
-    init() {
+    init(symbolService: SymbolService) {
+        self.symbolService = symbolService
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         fileURL = documentsDirectory.appendingPathComponent("documents.json")
@@ -36,17 +40,6 @@ class DocumentStore: ObservableObject {
         }
         return index
     }
-    
-//    func addDocument(_ document: Document, _ index: Int) {
-//        var cursorMod = index
-//        if documents.count >= 9 {
-//            documents.removeFirst()
-//            cursorMod -= 1
-//        }
-//        documents.append(document)
-//        cursorIndex = cursorMod
-//        saveDocuments()
-//    }
         
     func deleteDocument(at index: Int) {
         documents.remove(at: index)
@@ -72,22 +65,30 @@ class DocumentStore: ObservableObject {
         }
     }
     
-//    var image: UIImage? {
-//        get {
-//            if let data = documents[cursorIndex].imageData {
-//                return UIImage(data: data)
-//                return data.pngData()
-//            }
-//            return nil
-//        }
-//        set {
-//            if let newImage = newValue {
-//                documents[cursorIndex].imageData = newImage.pngData()
-//            } else {
-//                documents[cursorIndex].imageData = nil
-//            }
-//        }
-//    }
+    
+    func fetchSymbol() {
+        print("TEST")
+        if let imageData = documents[cursorIndex].imageData, let image = UIImage(data: imageData) {
+            print("TEST2")
+            symbolService.getImageSymbol(image: image)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        print("Error fetching symbol data: \(error.localizedDescription)")
+                    }
+                }, receiveValue: { [weak self] symbol in
+                    
+                    if let self = self, self.documents.indices.contains(self.cursorIndex) {
+                        self.documents[self.cursorIndex].symbol = symbol
+                        print(symbol)
+                    }
+                })
+                .store(in: &cancellables)
+        }
+    }
     
     func saveImage(withImageData imageData: Data) {
         documents[cursorIndex].imageData = imageData

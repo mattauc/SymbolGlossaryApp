@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct SymbolGlossaryApp: App {
-    @StateObject private var documentStore = DocumentStore()
+    @StateObject private var documentStore = DocumentStore(symbolService: SymbolService.shared)
     @StateObject private var symbolGlossaryManager = SymbolGlossaryManager()
     
     var body: some Scene {

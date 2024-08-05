@@ -16,8 +16,6 @@ struct DrawingCard: View {
     
     @EnvironmentObject var documentStore: DocumentStore
     
-    //Likely import the document model that belong to each card and just dispaly the UIimage
-    
     var body: some View {
         ZStack {
             
@@ -34,18 +32,19 @@ struct DrawingCard: View {
                 }
             } else {
                 NavigationLink(destination: DocumentPage(documentIndex: documentIndex, newDocument: false)) {
-//                    Image(systemName: "pencil.circle")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .foregroundColor(.gray)
-//                        .padding(50)
-                    if let imageData = documentStore.documents[documentIndex].imageData,
-                       let image = UIImage(data: imageData) {
-                        Image(uiImage: image)
-                            .resizable()
-                    } else {
-                        Text("No Image")
-                            .foregroundColor(.white)
+                    if documentIndex < documentStore.documents.count {
+                        if let imageData = documentStore.documents[documentIndex].imageData,
+                           let image = UIImage(data: imageData) {
+                            Image(uiImage: image)
+                                .resizable()
+                                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                                .overlay(
+                                   RoundedRectangle(cornerRadius: cornerRadius)
+                                    .stroke(Color("DarkGrayColour"), lineWidth: 5))
+                        } else {
+                            Text("No Image")
+                                .foregroundColor(.white)
+                        }
                     }
                 }
             }

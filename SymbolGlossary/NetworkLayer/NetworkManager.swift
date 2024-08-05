@@ -37,13 +37,13 @@ enum SymbolGlossaryEndpoint: APIEndpoint {
     case getSymbol
     
     var baseURL: URL {
-        return URL(string: "localhost")!
+        return URL(string: "http://127.0.0.1:5000")!
     }
     
     var path: String {
         switch self {
         case .getSymbol:
-            return "/api/weather"
+            return "/predict"
         }
     }
     
@@ -57,7 +57,7 @@ enum SymbolGlossaryEndpoint: APIEndpoint {
     var headers: [String: String]? {
         switch self {
         case .getSymbol:
-            return ["Authorization": "Default"]
+            return ["Content-Type": "multipart/form-data"]
         }
     }
     
@@ -65,31 +65,44 @@ enum SymbolGlossaryEndpoint: APIEndpoint {
     var parameters: [String: String] {
         switch self {
         case .getSymbol:
-            return ["H" : "H"]
+            return [:]
         }
     }
 }
 
 protocol APIClient {
     associatedtype EndpointType: APIEndpoint
-    func request<T: Decodable>(_ endpoint: EndpointType) throws -> AnyPublisher<T, Error>
+    func request<T: Decodable>(_ endpoint: EndpointType, imageData: Data) throws -> AnyPublisher<T, Error>
 }
 
 class URLSessionAPIClient<EndpointType: APIEndpoint>: APIClient {
     
-    func request<T: Decodable>(_ endpoint: EndpointType) throws -> AnyPublisher<T, Error> {
+    func request<T: Decodable>(_ endpoint: EndpointType, imageData: Data) throws -> AnyPublisher<T, Error> {
         
         let url = endpoint.baseURL.appendingPathComponent(endpoint.path)
-        
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
-        components.queryItems = endpoint.parameters.map { URLQueryItem(name: $0.key, value: $0.key) }
-        
-        guard let finalURL = components.url else {
-            throw APIError.invalidURL
-        }
-        
-        var request = URLRequest(url: finalURL)
+        var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
+        
+        // Set Content-Type for multipart/form-data
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        // Construct multipart/form-data body
+        var body = Data()
+        
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.png\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)
+        body.append("\r\n".data(using: .utf8)!)
+        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = body
+        
+        // Logging the request details
+        print("Request URL: \(url)")
+        print("Request Method: \(request.httpMethod ?? "N/A")")
+        print("Request Headers: \(request.allHTTPHeaderFields ?? [:])")
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .subscribe(on: DispatchQueue.global(qos: .background))

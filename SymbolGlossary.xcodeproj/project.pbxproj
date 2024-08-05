@@ -20,6 +20,7 @@
 		67AFEB442C56321F003BBF06 /* DrawingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB432C56321F003BBF06 /* DrawingEngine.swift */; };
 		67AFEB462C59E308003BBF06 /* DrawingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB452C59E308003BBF06 /* DrawingCard.swift */; };
 		67AFEB4C2C5EF13F003BBF06 /* RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB4B2C5EF13F003BBF06 /* RGBA.swift */; };
+		67AFEB502C604632003BBF06 /* SymbolService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB4F2C604632003BBF06 /* SymbolService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		67AFEB432C56321F003BBF06 /* DrawingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingEngine.swift; sourceTree = "<group>"; };
 		67AFEB452C59E308003BBF06 /* DrawingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCard.swift; sourceTree = "<group>"; };
 		67AFEB4B2C5EF13F003BBF06 /* RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBA.swift; sourceTree = "<group>"; };
+		67AFEB4F2C604632003BBF06 /* SymbolService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				67AFEB3E2C55B807003BBF06 /* NetworkManager.swift */,
+				67AFEB4F2C604632003BBF06 /* SymbolService.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				67AFEB3D2C55B7E1003BBF06 /* DocumentPage.swift in Sources */,
 				67AFEB162C55157A003BBF06 /* SymbolGlossaryApp.swift in Sources */,
 				67AFEB412C55B873003BBF06 /* SymbolGlossaryManager.swift in Sources */,
+				67AFEB502C604632003BBF06 /* SymbolService.swift in Sources */,
 				67AFEB462C59E308003BBF06 /* DrawingCard.swift in Sources */,
 				67AFEB3F2C55B807003BBF06 /* NetworkManager.swift in Sources */,
 				67AFEB392C55B515003BBF06 /* DocumentStore.swift in Sources */,

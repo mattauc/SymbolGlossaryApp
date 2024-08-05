@@ -48,10 +48,14 @@ struct DocumentPage: View {
             if newDocument {
                 if documentStore.documentLines.count == 0 {
                     documentStore.deleteDocument(at: documentStore.documents.count - 1)
+                } else {
+                    documentStore.saveDocuments()
+                    captureAndSaveImage()
                 }
+            } else {
+                documentStore.saveDocuments()
+                captureAndSaveImage()
             }
-            documentStore.saveDocuments()
-            captureAndSaveImage()
         }
     }
     
@@ -105,6 +109,12 @@ struct DocumentPage: View {
     private var toolBar: some View {
         HStack {
             Button {
+                documentStore.fetchSymbol()
+            } label: {
+                Image(systemName: "target")
+                    .foregroundColor(.white)
+            }
+            Button {
                 documentStore.undoLine()
             } label: {
                 Image(systemName: "arrow.uturn.backward")
@@ -130,22 +140,16 @@ struct DocumentPage: View {
     }
     
     private func captureAndSaveImage() {
-        let size = CGSize(width: 300, height: 400) // Adjust to your needs
-        let hostingController = UIHostingController(rootView: canvasPage.frame(width: size.width, height: size.height))
-        
-        let uiView = hostingController.view
-        uiView?.bounds = CGRect(origin: .zero, size: size)
-        uiView?.backgroundColor = .white
-
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        uiView?.drawHierarchy(in: uiView!.bounds, afterScreenUpdates: true)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        if let image = image, let imageData = image.pngData() { // Convert UIImage to Data
-            documentStore.saveImage(withImageData: imageData)
-        }
-    }
+         let renderer = ImageRenderer(content: canvasPage.overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(.white, lineWidth: 10)
+        ))
+         if let image = renderer.uiImage {
+             if let imageData = image.jpegData(compressionQuality: 0.8) {
+                 documentStore.saveImage(withImageData: imageData)
+             }
+         }
+     }
 }
 
 //#Preview {
