@@ -47,7 +47,6 @@ class DocumentStore: ObservableObject {
     }
     
     func saveDocuments() {
-        print("SAVING")
         do {
             let data = try JSONEncoder().encode(documents)
             try data.write(to: fileURL)
@@ -67,9 +66,7 @@ class DocumentStore: ObservableObject {
     
     
     func fetchSymbol() {
-        print("TEST")
         if let imageData = documents[cursorIndex].imageData, let image = UIImage(data: imageData) {
-            print("TEST2")
             symbolService.getImageSymbol(image: image)
                 .receive(on: DispatchQueue.main)
                 .sink(receiveCompletion: { completion in
@@ -99,7 +96,6 @@ class DocumentStore: ObservableObject {
         return documents[cursorIndex]
     }
     
-    // FRESH DOCUMENT NOT SAVING 
     func createNewDocument(_ index: Int) {
         let newDocument = Document()
         var cursorMod = index
@@ -110,6 +106,10 @@ class DocumentStore: ObservableObject {
         documents.append(newDocument)
         cursorIndex = cursorMod
         print(documents.count)
+    }
+    
+    var symbolName: String? {
+        return documents[cursorIndex].symbol?.symbol
     }
     
     var documentLines: [Line] {

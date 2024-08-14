@@ -21,6 +21,7 @@
 		67AFEB462C59E308003BBF06 /* DrawingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB452C59E308003BBF06 /* DrawingCard.swift */; };
 		67AFEB4C2C5EF13F003BBF06 /* RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB4B2C5EF13F003BBF06 /* RGBA.swift */; };
 		67AFEB502C604632003BBF06 /* SymbolService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB4F2C604632003BBF06 /* SymbolService.swift */; };
+		67AFEB522C6C5EF6003BBF06 /* SortDropMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFEB512C6C5EF6003BBF06 /* SortDropMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		67AFEB452C59E308003BBF06 /* DrawingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCard.swift; sourceTree = "<group>"; };
 		67AFEB4B2C5EF13F003BBF06 /* RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBA.swift; sourceTree = "<group>"; };
 		67AFEB4F2C604632003BBF06 /* SymbolService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolService.swift; sourceTree = "<group>"; };
+		67AFEB512C6C5EF6003BBF06 /* SortDropMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				67AFEB172C55157A003BBF06 /* HomePage.swift */,
 				67AFEB3C2C55B7E1003BBF06 /* DocumentPage.swift */,
 				67AFEB452C59E308003BBF06 /* DrawingCard.swift */,
+				67AFEB512C6C5EF6003BBF06 /* SortDropMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				67AFEB502C604632003BBF06 /* SymbolService.swift in Sources */,
 				67AFEB462C59E308003BBF06 /* DrawingCard.swift in Sources */,
 				67AFEB3F2C55B807003BBF06 /* NetworkManager.swift in Sources */,
+				67AFEB522C6C5EF6003BBF06 /* SortDropMenu.swift in Sources */,
 				67AFEB392C55B515003BBF06 /* DocumentStore.swift in Sources */,
 				67AFEB372C55B507003BBF06 /* Document.swift in Sources */,
 				67AFEB3B2C55B73D003BBF06 /* SymbolGlossary.swift in Sources */,

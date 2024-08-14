@@ -42,7 +42,8 @@ struct DrawingCard: View {
                                    RoundedRectangle(cornerRadius: cornerRadius)
                                     .stroke(Color("DarkGrayColour"), lineWidth: 5))
                         } else {
-                            Text("No Image")
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
                                 .foregroundColor(.white)
                         }
                     }

@@ -35,11 +35,16 @@ struct HomePage: View {
     }
     
     var homeContent: some View {
-        Text("MATH SYMBOL GLOSSARY")
-            .foregroundColor(.white)
+        VStack {
+            Text("MATH SYMBOL GLOSSARY")
+                .foregroundColor(.white)
+            
+            SortDropMenu()
+        }
     }
 }
 
 #Preview {
     HomePage()
+        .environmentObject(DocumentStore(symbolService: SymbolService.shared))
 }

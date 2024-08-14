@@ -11,12 +11,15 @@ struct DocumentPage: View {
     
     @State private var eraser = false
     @State private var documentCreated = false
+    @State private var documentSaved = false
     
     @EnvironmentObject var documentStore: DocumentStore
+    @EnvironmentObject var symbolGlossaryManager: SymbolGlossaryManager
     
     let documentIndex: Int
     let engine = DrawingEngine()
     var newDocument: Bool
+    
     
     var body: some View {
         ZStack {
@@ -26,8 +29,9 @@ struct DocumentPage: View {
                 ScrollView {
                     VStack {
                         
-                        Text("SYMBOL NAME")
+                        Text(documentStore.symbolName ?? "Inconclusive")
                             .foregroundColor(.white)
+                            .font(.largeTitle)
                         canvasPage
                         toolBar
                             .padding(.top, 5)
@@ -45,16 +49,18 @@ struct DocumentPage: View {
             documentCreated = true
         }
         .onDisappear() {
-            if newDocument {
-                if documentStore.documentLines.count == 0 {
+            if (!documentSaved && newDocument) {
+                documentStore.deleteDocument(at: documentStore.documents.count - 1)
+            } else if (documentStore.documentLines.count == 0) {
+                if newDocument {
                     documentStore.deleteDocument(at: documentStore.documents.count - 1)
                 } else {
-                    documentStore.saveDocuments()
-                    captureAndSaveImage()
+                    documentStore.deleteDocument(at: documentIndex)
                 }
-            } else {
-                documentStore.saveDocuments()
-                captureAndSaveImage()
+            } else if documentSaved {
+                if let name = documentStore.symbolName {
+                    symbolGlossaryManager.addToSymbolList(name)
+                }
             }
         }
     }
@@ -109,34 +115,42 @@ struct DocumentPage: View {
     private var toolBar: some View {
         HStack {
             Button {
+                captureAndSaveImage()
                 documentStore.fetchSymbol()
+                documentStore.saveDocuments()
+                documentSaved = true
             } label: {
                 Image(systemName: "target")
                     .foregroundColor(.white)
+                    .font(.largeTitle)
             }
+            
             Button {
                 documentStore.undoLine()
             } label: {
                 Image(systemName: "arrow.uturn.backward")
                     .foregroundColor(.white)
+                    .font(.largeTitle)
             }
             .disabled(documentStore.documentLines.count == 0)
-            
             Button {
                 documentStore.redoLine()
             } label: {
                 Image(systemName: "arrow.uturn.forward")
                     .foregroundColor(.white)
+                    .font(.largeTitle)
             }
             .disabled(documentStore.deletedLines.count == 0)
-            
+            //Spacer()
             Button {
                 documentStore.trashLines()
             } label: {
                 Image(systemName: "trash")
                     .foregroundColor(.white)
+                    .font(.largeTitle)
             }
         }
+        .frame(width:300)
     }
     
     private func captureAndSaveImage() {
@@ -152,6 +166,10 @@ struct DocumentPage: View {
      }
 }
 
-//#Preview {
-//    DocumentPage()
-//}
+struct DocumentPage_Previews: PreviewProvider {
+    static var previews: some View {
+        let documentStore = DocumentStore(symbolService: SymbolService.shared)
+        DocumentPage(documentIndex: 0, newDocument: true)
+            .environmentObject(documentStore)
+    }
+}
